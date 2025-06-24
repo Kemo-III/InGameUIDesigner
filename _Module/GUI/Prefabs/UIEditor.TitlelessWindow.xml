@@ -1,0 +1,13 @@
+<Prefab>
+  <Window>
+    <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+      <Children>
+        <BrushWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Frame1Brush" SuggestedWidth="200" SuggestedHeight="200" Sprite="Frame1_canvas">
+          <Children>
+            <Widget MarginTop="10" MarginLeft="10" MarginBottom="10" MarginRight="10" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" />
+          </Children>
+        </BrushWidget>
+      </Children>
+    </Widget>
+  </Window>
+</Prefab>

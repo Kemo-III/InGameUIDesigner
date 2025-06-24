@@ -1,0 +1,63 @@
+<Prefab>
+
+<Window>
+<Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent">
+<Children>
+	<ListPanel MarginLeft="20" HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom">
+		<Children>
+			<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="150">
+				<Children>
+					<GridWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" RowCount="2">
+						<Children>
+							<!--Delete Widget Button-->
+							<Standard.Button Parameter.OnClick="RemoveSelectedWidget" Parameter.Text="Delete" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50"  HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" MarginLeft="5"/>
+							<!--Move Widget Up Chain Button-->
+							<Standard.Button Parameter.OnClick="MoveSelectedWidgetUpChain" Parameter.Text="Up" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50"  HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" MarginLeft="5"/>
+							<!--Move Widget Down Chain Button-->
+							<Standard.Button Parameter.OnClick="MoveSelectedWidgetDownChain" Parameter.Text="Down" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50"  HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" MarginLeft="5"/>
+							<!--Parent Button-->
+							<Standard.Button Parameter.OnClick="ParentSelectedWidget" Parameter.Text="Parent" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50"  HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" MarginLeft="5"/>
+							<!--Unparent Button-->
+							<Standard.Button Parameter.OnClick="UnparentSelectedWidget" Parameter.Text="Unparent" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50"  HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" MarginLeft="5"/>
+							<!--Delete Widget Button-->
+							<Standard.Button Parameter.OnClick="DuplicateSelectedWidget" Parameter.Text="Copy" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50"  HorizontalAlignment="Center" VerticalAlignment="Center" MarginRight="5" MarginLeft="5"/>
+						</Children>
+					</GridWidget>
+				</Children>
+			</Widget>
+			<ScrollablePanel Id="HierarchyList" MarginTop="10" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" InnerPanel="HierarchyClipRect\HierarchyListPanel" ClipRect="HierarchyClipRect" MouseScrollAxis="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalScrollbar="..\..\WidgetHierarchyScrollBar\Scrollbar" AutoHideScrollBars="false" >
+				<Children>
+				<NavigationScopeTargeter ScopeID="HierarchyScope" ScopeParent="..\HierarchyClipRect" ScopeMovements="Vertical" HasCircularMovement="true" IsDefaultNavigationScope="true" NavigateFromScopeEdges="true" UseDiscoveryAreaAsScopeEdges="true" ExtendChildrenCursorAreaRight="-200" ExtendDiscoveryAreaRight="-200"/>
+				<Widget Id="HierarchyClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true">
+					<Children>
+					<!--List Item Panel -->
+					<NavigatableListPanel Id="HierarchyListPanel" DataSource="{WidgetHierarchy}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" UseSelfIndexForMinimum="true">
+						<ItemTemplate>
+							<ListPanel IsHidden="@IsCollapsed" HeightSizePolicy ="Fixed" SuggestedHeight="40" MarginLeft="@Margin" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+								<Children>
+									<ButtonWidget Id="CollapseButton" WidthSizePolicy="Fixed" VerticalAlignment="Center" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" Command.Click="ToggleCollapseChildren" ButtonType="Toggle" Brush="UIEditor.WidgetHierarchy.CollapseIndicator"/>
+									<!--Widget Name-->
+									<ButtonWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" Command.Click="SetAsSelected" UpdateChildrenStates="true" IsSelected="@Selected">
+										<Children>
+											<ScrollingTextWidget Text="@Name" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" DoNotAcceptEvents="true" Brush="UIEditor.WidgetHierarchy.Text"/>
+										</Children>
+									</ButtonWidget>
+									<!--Lock Widget Button-->
+									<ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" SuggestedWidth="40" HeightSizePolicy="Fixed" SuggestedHeight="30" VerticalAlignment="Center" IsSelected="@Locked" HorizontalAlignment="Right" Brush="UIEditor.WidgetHierarchy.Lock" ButtonType="Toggle" Command.Click="LockWidget"/>
+								</Children>
+							</ListPanel>
+						</ItemTemplate>
+					</NavigatableListPanel>
+					</Children>
+				</Widget>
+				</Children>
+			</ScrollablePanel>
+		</Children>
+	</ListPanel>
+	<Standard.VerticalScrollbar Id="WidgetHierarchyScrollBar" HeightSizePolicy="StretchToParent" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+</Children>
+</Widget>
+</Window>
+
+
+</Prefab>

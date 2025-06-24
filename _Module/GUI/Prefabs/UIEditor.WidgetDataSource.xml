@@ -1,0 +1,80 @@
+<Prefab>
+
+<Window>
+<Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent">
+<Children>
+	<!--List of Properties-->
+	<ScrollablePanel Id="ScrollableList" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" InnerPanel="ClipRect\RectListPanel" ClipRect="ClipRect" MouseScrollAxis="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalScrollbar="..\TabScrollBar\Scrollbar" AutoHideScrollBars="false" >
+		<Children>
+		<NavigationScopeTargeter ScopeID="ListScope" ScopeParent="..\ClipRect" ScopeMovements="Vertical" HasCircularMovement="true" IsDefaultNavigationScope="true" NavigateFromScopeEdges="true" UseDiscoveryAreaAsScopeEdges="true" ExtendChildrenCursorAreaRight="-200" ExtendDiscoveryAreaRight="-200"/>
+		<Widget Id="ClipRect" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ClipContents="true">
+			<Children>
+			<!--List Item Panel -->
+			<NavigatableListPanel Id="RectListPanel" HorizontalAlignment="Left" MarginTop="25" MarginBottom="10" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" UseSelfIndexForMinimum="true">
+				<Children>
+					<!--Toggle widget datasource-->
+					<ListPanel HeightSizePolicy ="Fixed" SuggestedHeight="40" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+						<Children>
+							<TextWidget Text="Enable Custom DataSource" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+							<ButtonWidget DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" SuggestedWidth="40" HeightSizePolicy="StretchToParent" Brush="SPOptions.Checkbox.Empty.Button" ButtonType="Toggle" IsSelected="@EnableCustomDatasource" ToggleIndicator="ToggleIndicator" UpdateChildrenStates="true">
+							  <Children>
+								<BrushWidget Id="ToggleIndicator" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="SPOptions.Checkbox.Full.Button" />
+							  </Children>
+							</ButtonWidget>
+						</Children>
+					</ListPanel>
+					<!--Datasource name-->
+					<ListPanel HeightSizePolicy ="Fixed" SuggestedHeight="40" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+						<Children>
+							<TextWidget Text="DataSource Name" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+							<EditableTextWidget Text="@SelectedDataSourceName" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.NameInput.Text"/>
+						</Children>
+					</ListPanel>
+					<!--Bool-->
+					<ListPanel DataSource="{SelectedWidgetDataSource}" HeightSizePolicy ="Fixed" SuggestedHeight="40" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+						<Children>
+							<TextWidget Text="Dummy Boolean" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+							<EditableTextWidget Text="@DummyBoolAsString" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.NameInput.Text"/>
+						</Children>
+					</ListPanel>
+					<!--Text-->
+					<ListPanel DataSource="{SelectedWidgetDataSource}" HeightSizePolicy ="Fixed" SuggestedHeight="40" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+						<Children>
+							<TextWidget Text="Dummy Text" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+							<EditableTextWidget Text="@DummyText" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.NameInput.Text"/>
+						</Children>
+					</ListPanel>
+					<!--Number-->
+					<ListPanel DataSource="{SelectedWidgetDataSource}" HeightSizePolicy ="Fixed" SuggestedHeight="40" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+						<Children>
+							<TextWidget Text="Dummy Number" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+							<EditableTextWidget FloatText="@DummyNumber" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.NameInput.Text"/>
+						</Children>
+					</ListPanel>
+					<!--Sprite-->
+					<ListPanel DataSource="{SelectedWidgetDataSource}" HeightSizePolicy ="Fixed" SuggestedHeight="40" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+						<Children>
+							<TextWidget Text="Dummy Sprite" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+							<EditableTextWidget Text="@DummySpriteName" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.NameInput.Text"/>
+						</Children>
+					</ListPanel>
+					<!--Brush-->
+					<ListPanel DataSource="{SelectedWidgetDataSource}" HeightSizePolicy ="Fixed" SuggestedHeight="40" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight" >
+						<Children>
+							<TextWidget Text="Dummy Brush" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+							<EditableTextWidget Text="@DummyBrushName" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.NameInput.Text"/>
+						</Children>
+					</ListPanel>
+				</Children>
+			</NavigatableListPanel>
+			</Children>
+		</Widget>
+		</Children>
+	</ScrollablePanel>
+	<Standard.VerticalScrollbar Id="TabScrollBar" HeightSizePolicy="StretchToParent" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+</Children>
+</Widget>
+</Window>
+
+
+</Prefab>

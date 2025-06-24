@@ -1,0 +1,38 @@
+<Prefab>
+  <Window>
+  <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+	<Children>
+		<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="750" SuggestedHeight="1000" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<Children>
+				<Standard.Window WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" VerticalAlignment="Center" HorizontalAlignment="Center" Parameter.Title="Sprite List" >
+				  <Children>
+					<ScrollablePanel MarginTop="100" MarginBottom="60" MarginLeft="10" ClipRect="SpritesClipRect" InnerPanel="SpritesClipRect\InnerGridList" VerticalScrollbar="..\VerticalScrollbar\Scrollbar" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" >
+					  <Children>
+						<Widget Id="SpritesClipRect" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" ClipContents="true">
+						  <Children>
+							<NavigatableGridWidget DataSource="{PreviewSpriteList}" DefaultCellWidth="150" DefaultCellHeight="250" ColumnCount="3" Id="InnerGridList" VerticalAlignment="Top" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" GridLayout.Direction="RowFirst" GridLayout.HorizontalLayoutMethod="LeftToRight" GridLayout.VerticalLayoutMethod="TopToBottom">
+							  <ItemTemplate>
+								<ListPanel VerticalAlignment="Center" HorizontalAlignment="Center" SuggestedHeight="250" SuggestedWidth="150" StackLayout.LayoutMethod="VerticalBottomToTop">
+								  <Children>
+									<ButtonWidget Command.Click="CopyNameToClipboard" CanAcceptEvents="true" Sprite="@Sprite" SuggestedHeight="150" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent"/>
+									<TextWidget Text="@SpriteName" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"/>
+								  </Children>
+								</ListPanel>
+							  </ItemTemplate>
+							</NavigatableGridWidget>
+						  </Children>
+						</Widget>
+					  </Children>
+					</ScrollablePanel>
+					<!--Search Bar Widget-->
+					<EditableTextWidget Id="SearchBar" MarginLeft="40" Text="@SpriteSearchText" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" VerticalAlignment="Bottom" HorizontalAlignment="Center" Brush="Encyclopedia.Search.TextBox" />
+					<Standard.VerticalScrollbar Id="VerticalScrollbar" HeightSizePolicy="StretchToParent" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+				  </Children>
+				</Standard.Window>
+			</Children>
+		</Widget>
+	<ButtonWidget Command.Click="ClosePopUps" SuggestedHeight="100" SuggestedWidth="100" PositionXOffset="375" PositionYOffset="-465" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Popup.CloseButton"/>
+	</Children>
+  </Widget>
+  </Window>
+</Prefab>

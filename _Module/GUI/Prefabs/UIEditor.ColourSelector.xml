@@ -1,0 +1,34 @@
+<Prefab>
+  <Window>
+  <Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+	<Children>
+		<BrushWidget Brush="Frame1Brush" Sprite="Frame1_canvas" SuggestedWidth="550" SuggestedHeight="400" VerticalAlignment="Center" HorizontalAlignment="Center">
+			<Children>
+			<ListPanel DataSource="{ColourPickerDataSource}" MarginTop="10" MarginLeft="10" MarginBottom="65" MarginRight="10" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight">
+			  <Children>
+				<ButtonWidget Id="HueSaturationPicker" SuggestedWidth="250" SuggestedHeight="250" MarginRight="30" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="hue_saturation_circle" Command.Click="PickHueAndSaturation" DoNotPassEventsToChildren="true" ExtendCursorAreaTop="6" ExtendCursorAreaRight="6" ExtendCursorAreaBottom="6" ExtendCursorAreaLeft="6">
+				  <Children>
+					<Widget PositionXOffset="@HueSaturationPickerXOffset" PositionYOffset="@HueSaturationPickerYOffset" SuggestedWidth="30" SuggestedHeight="30" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="MapBar\mapbar_center_circle_frame"/>
+				  </Children>
+				</ButtonWidget>
+				<SliderWidget AlignmentAxis="Vertical" MaxValueFloat="1" ValueFloat="@Value" Handle="Handle" Brush="DefaultBrush" Brush.Sprite="BlankWhiteSquare" Sprite="BlankWhiteSquare" Id="ValueSlider" SuggestedWidth="50" SuggestedHeight="250" VerticalAlignment="Center" HorizontalAlignment="Center" DoNotPassEventsToChildren="true">
+				  <Children>
+					<Widget Color="#000000FF" SuggestedWidth="200" SuggestedHeight="200" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="MPLobby\Armory\cosmetics_gradient"/>
+					<Widget ExtendLeft="20" ExtendRight="20" Id="Handle" SuggestedWidth="80" SuggestedHeight="12" VerticalAlignment="Bottom" HorizontalAlignment="Center" Sprite="options_slider_handle" ExtendCursorAreaTop="3" ExtendCursorAreaRight="6" ExtendCursorAreaBottom="3" ExtendCursorAreaLeft="6"/>
+				  </Children>
+				</SliderWidget>
+				<Widget Id="ColourPreview" Color="@FinalColour" SuggestedWidth="150" SuggestedHeight="150" MarginLeft="35" VerticalAlignment="Center" HorizontalAlignment="Center" Sprite="BlankWhiteSquare">
+				  <Children>
+					<Widget ExtendLeft="20" ExtendRight="20" ExtendTop="20" ExtendBottom="20" SuggestedWidth="200" SuggestedHeight="200" VerticalAlignment="Center" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Sprite="StdAssets\frame_small"/>
+				  </Children>
+				</Widget>
+			  </Children>
+			</ListPanel>
+			<Standard.Button DataSource="{ColourPickerDataSource}" SuggestedWidth="300" SuggestedHeight="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="15" Parameter.Text="Pick Colour" Parameter.OnClick="PickColour"/>
+			</Children>
+		</BrushWidget>
+		<ButtonWidget Command.Click="ClosePopUps" SuggestedHeight="100" SuggestedWidth="100" PositionXOffset="275" PositionYOffset="-195" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Popup.CloseButton"/>
+	</Children>
+  </Widget>
+</Window>
+</Prefab>

@@ -1,0 +1,14 @@
+<Prefab>
+
+<Window>
+<Widget HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Sprite="General\CharacterCreation\character_creation_background_gradient" IsVisible="@PopUpsEnabled">
+<Children>
+	<UIEditor.BrushPreviewList IsVisible="@ShowPreviewBrushList"/>
+	<UIEditor.SpritesPreviewList IsVisible="@ShowPreviewSpritesList"/>
+	<UIEditor.ColourSelector IsVisible="@ShowColourPicker"/>
+</Children>
+</Widget>
+</Window>
+
+
+</Prefab>

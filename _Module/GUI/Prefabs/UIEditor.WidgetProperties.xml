@@ -1,0 +1,66 @@
+<Prefab>
+
+<Window>
+<Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" MarginBottom="10">
+<Children>
+	<!--List of Properties-->
+	<ScrollablePanel MarginTop="10" MarginBottom="60" MarginRight="10" MarginLeft="30" Id="PropertiesList" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" InnerPanel="PropertiesClipRect\PropertiesListPanel" ClipRect="PropertiesClipRect" MouseScrollAxis="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalScrollbar="..\WidgetPropertiesScrollBar\Scrollbar" AutoHideScrollBars="false" >
+		<Children>
+		<NavigationScopeTargeter ScopeID="PropertiesListScope" ScopeParent="..\PropertiesClipRect" ScopeMovements="Vertical" HasCircularMovement="true" IsDefaultNavigationScope="true" NavigateFromScopeEdges="true" UseDiscoveryAreaAsScopeEdges="true" ExtendChildrenCursorAreaRight="-200" ExtendDiscoveryAreaRight="-200"/>
+		<Widget Id="PropertiesClipRect" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ClipContents="true">
+			<Children>
+			<!--List Item Panel -->
+			<NavigatableListPanel Id="PropertiesListPanel" DataSource="{SelectedWidgetProperties}" HorizontalAlignment="Left" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" UseSelfIndexForMinimum="true">
+				<ItemTemplate>
+					<ListPanel HeightSizePolicy="CoverChildren" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalBottomToTop">
+						<Children>
+							<TextWidget Text="@DisplayedPropertyName" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+							<Widget SuggestedHeight="100" MarginLeft="5" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren">
+								<Children>
+									<Widget WidthSizePolicy="StretchToParent" SuggestedHeight="60" IsVisible="@UsesTextBox" Sprite="BlankWhiteSquare_9" Color="#000000FF" AlphaFactor="0.3" >
+										<Children>
+											<EditableTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.Tier.Text" MarginLeft="20" VerticalAlignment="Center" Text="@TextboxValue"/>
+										</Children>
+									</Widget>
+									<ButtonWidget IsVisible="@UsesToggleButton" DoNotPassEventsToChildren="true" SuggestedWidth="50" SuggestedHeight="50" Brush="SPOptions.Checkbox.Empty.Button" ButtonType="Toggle" IsSelected="@ToggleButtonValue" Command.Click="ToggleButtonValueChanged" ToggleIndicator="ToggleIndicator" UpdateChildrenStates="true">
+									  <Children>
+										<BrushWidget Id="ToggleIndicator" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="SPOptions.Checkbox.Full.Button" />
+									  </Children>
+									</ButtonWidget>
+									<Widget HeightSizePolicy="CoverChildren" WidthSizePolicy="CoverChildren" MarginLeft="20" MarginTop="5" IsVisible="@UsesDropDownMenu" >
+										<Children>
+											<Standard.DropdownWithHorizontalControl Parameter.SelectorDataSource="{EnumSelector}"/>
+										</Children>
+									</Widget>
+									<Standard.Button IsVisible="@UsesWidgetPicker" SuggestedWidth="350" SuggestedHeight="50" Parameter.Text="Pick Widget" HorizontalAlignment="Center" Parameter.OnClick="EnterWidgetPickerMode"/>
+									<Widget WidthSizePolicy="StretchToParent" SuggestedHeight="60" MarginTop="65" MarginBottom="30" IsVisible="@UsesWidgetPicker" Sprite="BlankWhiteSquare_9" Color="#000000FF" AlphaFactor="0.3" >
+										<Children>
+											<EditableTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.Tier.Text" MarginLeft="20" VerticalAlignment="Center" Text="@TextboxValue"/>
+										</Children>
+									</Widget>
+									<Standard.Button IsVisible="@UsesColourPicker" SuggestedWidth="350" SuggestedHeight="50" Parameter.Text="Pick Colour" HorizontalAlignment="Center" Parameter.OnClick="EnterColourPickerMode"/>
+									<Widget WidthSizePolicy="StretchToParent" SuggestedHeight="60" MarginTop="65" MarginBottom="30" IsVisible="@UsesColourPicker" Sprite="BlankWhiteSquare_9" Color="#000000FF" AlphaFactor="0.3" >
+										<Children>
+											<EditableTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Crafting.Tier.Text" MarginLeft="20" VerticalAlignment="Center" Text="@TextboxValue"/>
+										</Children>
+									</Widget>
+									<ScrollingTextWidget WidthSizePolicy="StretchToParent" MarginTop="65" MarginBottom="30" Brush="Crafting.Tier.Text" MarginLeft="20" IsVisible="@UsesWidgetPicker" Text="@TextboxValue"/>
+								</Children>
+							</Widget>
+						</Children>
+					</ListPanel>
+				</ItemTemplate>
+			</NavigatableListPanel>
+			</Children>
+		</Widget>
+		</Children>
+	</ScrollablePanel>
+	<!--Search Bar Widget-->
+	<EditableTextWidget Id="SearchBar" MarginLeft="25" MarginRight="15" Text="@PropertySearchText" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" VerticalAlignment="Bottom" HorizontalAlignment="Center" Brush="Encyclopedia.Search.TextBox" />
+	<Standard.VerticalScrollbar Id="WidgetPropertiesScrollBar" HeightSizePolicy="StretchToParent" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+</Children>
+</Widget>
+</Window>
+
+
+</Prefab>

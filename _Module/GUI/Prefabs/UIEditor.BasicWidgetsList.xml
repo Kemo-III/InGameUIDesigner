@@ -1,0 +1,30 @@
+<Prefab>
+
+<Window>
+<Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent">
+<Children>
+	<!--List of Widgets-->
+	<ScrollablePanel Id="WidgetList"  MarginBottom="60" HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" InnerPanel="WidgetClipRect\ItemsListPanel" ClipRect="WidgetClipRect" MouseScrollAxis="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalScrollbar="..\WidgetScrollBar\Scrollbar" AutoHideScrollBars="false" >
+		<Children>
+		<NavigationScopeTargeter ScopeID="WidgetListScope" ScopeParent="..\WidgetClipRect" ScopeMovements="Vertical" HasCircularMovement="true" IsDefaultNavigationScope="true" NavigateFromScopeEdges="true" UseDiscoveryAreaAsScopeEdges="true" ExtendChildrenCursorAreaRight="-200" ExtendDiscoveryAreaRight="-200"/>
+		<Widget Id="WidgetClipRect" WidthSizePolicy = "StretchToParent" HeightSizePolicy = "StretchToParent" ClipContents="true">
+			<Children>
+			<!--List Item Panel -->
+			<NavigatableListPanel Id="ItemsListPanel" DataSource="{AvailableBasicWidgetNames}" HorizontalAlignment="Left" MarginTop="10" MarginBottom="10" MarginRight="30" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" StackLayout.LayoutMethod="VerticalBottomToTop" UseSelfIndexForMinimum="true">
+				<ItemTemplate>
+					<Standard.Button WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" Parameter.Text="@Name" HorizontalAlignment="Center" MarginBottom="10" Parameter.OnClick="SetAsSelectedResource"/>
+				</ItemTemplate>
+			</NavigatableListPanel>
+			</Children>
+		</Widget>
+		</Children>
+	</ScrollablePanel>
+	<!--Search Bar Widget-->
+	<EditableTextWidget Id="SearchBar" MarginRight="20" MarginBottom="5" MarginLeft="5" Text="@BasicWidgetsSearchText" WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="50" VerticalAlignment="Bottom" HorizontalAlignment="Center" Brush="Encyclopedia.Search.TextBox" />
+	<Standard.VerticalScrollbar Id="WidgetScrollBar" HeightSizePolicy="StretchToParent" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+</Children>
+</Widget>
+</Window>
+
+
+</Prefab>

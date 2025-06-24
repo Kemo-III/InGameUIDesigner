@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InGameUIDesigner", "InGameUIDesigner.csproj", "{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Beta_Debug|x64 = Beta_Debug|x64
+		Beta_Release|x64 = Beta_Release|x64
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+		Stable_Debug|x64 = Stable_Debug|x64
+		Stable_Release|x64 = Stable_Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Beta_Debug|x64.ActiveCfg = Beta_Debug|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Beta_Debug|x64.Build.0 = Beta_Debug|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Beta_Release|x64.ActiveCfg = Beta_Release|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Beta_Release|x64.Build.0 = Beta_Release|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Debug|x64.ActiveCfg = Debug|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Debug|x64.Build.0 = Debug|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Release|x64.ActiveCfg = Release|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Release|x64.Build.0 = Release|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Stable_Debug|x64.ActiveCfg = Stable_Debug|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Stable_Debug|x64.Build.0 = Stable_Debug|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Stable_Release|x64.ActiveCfg = Stable_Release|x64
+		{1CF97B04-C9D7-4D5F-8B68-93F9FC313BA0}.Stable_Release|x64.Build.0 = Stable_Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02325ACF-C3A0-4E36-9502-D0A3E5BB8D08}
+	EndGlobalSection
+EndGlobal

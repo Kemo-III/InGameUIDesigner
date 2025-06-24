@@ -1,0 +1,107 @@
+<Prefab>
+
+<Window>
+<Widget HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent">
+<Children>
+	<ListPanel HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="VerticalTopToBottom">
+		<Children>
+			<!-- Organizes the screen into a central editing area, the widgets list on the left, and the widget properties and current heirarchy on the right-->
+			<ListPanel HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalLeftToRight">
+				<Children>
+					<!--Widgets list-->
+					<UIEditor.TitlelessWindow HeightSizePolicy="StretchToParent" WidthSizePolicy="Fixed" SuggestedWidth="300" HorizontalAlignment="Left">
+						<Children>
+							<ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="90" HorizontalAlignment="Right" StackLayout.LayoutMethod="HorizontalSpaced">
+								<Children>
+									<TabToggleWidget Brush="Header.Tab.Center" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" TabControlWidget="..\..\LeftPanelTabs" TabName="BasicWidgets">
+										<Children>
+											<TextWidget Text="Basic" HorizontalAlignment="Center" VerticalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+										</Children>
+									</TabToggleWidget>
+									<TabToggleWidget Brush="Header.Tab.Center" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" TabControlWidget="..\..\LeftPanelTabs" TabName="PrefabWidgets">
+										<Children>
+											<TextWidget Text="Prefabs" HorizontalAlignment="Center" VerticalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+										</Children>
+									</TabToggleWidget>
+								</Children>
+							</ListPanel>
+							
+							<TabControl Id="LeftPanelTabs" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginTop="80" SelectedIndex="0">
+								<Children>
+									<!--Basic Widgets-->
+									<UIEditor.BasicWidgetsList Id="BasicWidgets" HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" IsVisible="true" />
+									<!--Prefab Widgets-->
+									<UIEditor.PrefabWidgetsList Id="PrefabWidgets" HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" IsVisible="false" />
+								</Children>
+							</TabControl>
+							
+						</Children>
+					</UIEditor.TitlelessWindow>
+					<!--Edit Area Widget-->
+					<Widget Id="PreviewRootWidget" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent"/>	
+					<!--Widget Id="PreviewRootWidget" HeightSizePolicy ="StretchToParent" WidthSizePolicy="StretchToParent" DataSource="{GlobalDataSource}"/-->	
+					<!--Right side panel for widget hierarchy, and properties-->
+					<UIEditor.TitlelessWindow HeightSizePolicy="StretchToParent" WidthSizePolicy="Fixed" SuggestedWidth="600" HorizontalAlignment="Right">
+						<Children>
+							<ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="Fixed" SuggestedHeight="90" HorizontalAlignment="Right" StackLayout.LayoutMethod="HorizontalSpaced">
+								<Children>
+									<TabToggleWidget Brush="Header.Tab.Center" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" TabControlWidget="..\..\RightPanelTabs" TabName="WidgetHierarchy">
+										<Children>
+											<TextWidget Text="Hierarchy" HorizontalAlignment="Center" VerticalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+										</Children>
+									</TabToggleWidget>
+									<TabToggleWidget Brush="Header.Tab.Center" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" TabControlWidget="..\..\RightPanelTabs" TabName="WidgetProperties">
+										<Children>
+											<TextWidget Text="Properties" HorizontalAlignment="Center" VerticalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+										</Children>
+									</TabToggleWidget>
+									<!--TabToggleWidget Brush="Header.Tab.Center" DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" Command.Click="OnRightTabClicked" CommandParameter.Click="2" TabControlWidget="..\..\RightPanelTabs" TabName="WidgetDataSource">
+										<Children>
+											<TextWidget Text="ViewModel" HorizontalAlignment="Center" VerticalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren"  DoNotAcceptEvents="true"/>
+										</Children>
+									</TabToggleWidget-->
+								</Children>
+							</ListPanel>
+							
+							<TabControl Id="RightPanelTabs" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginTop="80" SelectedIndex="0">
+								<Children>
+									<!--Widget Hierarchy-->
+									<UIEditor.WidgetHierarchy Id="WidgetHierarchy" HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" IsVisible="true" />
+									<!--Widget Properties-->
+									<UIEditor.WidgetProperties Id="WidgetProperties" HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" IsVisible="false"/>
+									<!--Widget Datasource-->
+									<!--UIEditor.WidgetDataSource Id="WidgetDataSource" HeightSizePolicy="StretchToParent" WidthSizePolicy="StretchToParent" IsVisible="@RightTabIsDataSource" /-->
+								</Children>
+							</TabControl>
+							
+						</Children>
+					</UIEditor.TitlelessWindow>
+				</Children>
+			</ListPanel>
+			<Widget Id="TopBar" SuggestedHeight="70" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent" Sprite="StdAssets\top_header">
+			  <Children>
+				<ListPanel SuggestedWidth="200" SuggestedHeight="200" MarginLeft="250" MarginBottom="10" MarginRight="250" HorizontalAlignment="Center" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" StackLayout.LayoutMethod="HorizontalCentered">
+				  <Children>
+					<Standard.Button DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" SuggestedHeight="40" MarginLeft="5" MarginRight="5" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="ButtonBrush1" Sprite="General\Button\main_button_done" Id="ShowBrushListButton" SuggestedWidth="227" Parameter.Text="Brush List" Parameter.OnClick="ShowBrushList" Parameter.HintEnabled="false">
+					  <Children />
+					</Standard.Button>
+					<Standard.Button DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" SuggestedHeight="40" MarginLeft="5" MarginRight="5" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="ButtonBrush1" Sprite="General\Button\main_button_done" Id="ShowSpriteListButton" SuggestedWidth="227" Parameter.Text="Sprite List" Parameter.OnClick="ShowSpriteList" Parameter.HintEnabled="false">
+					  <Children />
+					</Standard.Button>
+					<Standard.Button DoNotPassEventsToChildren="true" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" SuggestedHeight="40" MarginLeft="5" MarginRight="5" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="ButtonBrush1" Sprite="General\Button\main_button_done" Id="ExportButton" SuggestedWidth="227" Parameter.Text="Export" Parameter.OnClick="ExportButtonAction" Parameter.HintEnabled="false">
+					  <Children />
+					</Standard.Button>
+					<ButtonWidget SuggestedHeight="70" MarginLeft="5" MarginRight="5" HorizontalAlignment="Center" VerticalAlignment="Center" Brush="Popup.CloseButton" Sprite="StdAssets\close_button" Command.Click="Exit" SuggestedWidth="70" />
+				  </Children>
+				</ListPanel>
+			  </Children>
+			</Widget>
+		</Children>
+	</ListPanel>
+	<EditorWigetScalerWidget Id="ActiveWidgetScaler" Sprite="frame_small_9"/>
+</Children>
+</Widget>
+</Window>
+
+
+</Prefab>

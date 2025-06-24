@@ -1,0 +1,45 @@
+<Brushes>
+	<Brush Name="UIEditor.WidgetHierarchy.Lock">
+		<Layers>
+		  <BrushLayer Name="Unlocked" Sprite="StdAssets\lock_opened" IsHidden="true"/>
+		  <BrushLayer Name="Locked" Sprite="StdAssets\lock_closed" IsHidden="true" />
+		</Layers>
+		<Styles>
+		  <Style Name="Default">
+			<BrushLayer Name="Unlocked" AlphaFactor="0.7" IsHidden="false"/>
+		  </Style>
+		  <Style Name="Pressed">
+			<BrushLayer Name="Unlocked" AlphaFactor="0.3" IsHidden="false"/>
+		  </Style>
+		  <Style Name="Selected">
+			<BrushLayer Name="Locked" AlphaFactor="1" IsHidden="false"/>
+		  </Style>
+		  <Style Name="Disabled">
+			<BrushLayer Name="Unlocked" AlphaFactor="0.7" ColorFactor="0.6" SaturationFactor="-150" IsHidden="false"/>
+		  </Style>
+		</Styles>
+	</Brush>
+	<Brush Name="UIEditor.WidgetHierarchy.Text" Font="Galahad" TextHorizontalAlignment="Left">
+		<Layers>
+		</Layers>
+		<Styles>
+		  <Style Name="Default" FontColor="#FAF4DEFF" TextGlowColor="#000000FF" TextColorFactor="0.7" FontSize="30" />
+		  <Style Name="Hovered" FontColor="#FAF4DEFF" TextGlowColor="#000000FF" TextColorFactor="1.2" FontSize="30" />
+		  <Style Name="Pressed" FontColor="#FAF4DEFF" TextGlowColor="#000000FF" TextColorFactor="1.2" FontSize="30" />
+		  <Style Name="Selected" FontColor="#FAF4DEFF" TextGlowColor="#000000FF" TextColorFactor="1.2" FontSize="30" />
+		</Styles>
+	</Brush>
+	<Brush Name="UIEditor.WidgetHierarchy.CollapseIndicator" GlobalAlphaFactor="0.8" ColorFactor="1.5">
+    <Layers>
+      <BrushLayer Name="Default" Sprite="StdAssets\expanded" />
+    </Layers>
+    <Styles>
+      <Style Name="Default">
+        <BrushLayer Name="Default" Sprite="StdAssets\expanded"/>
+      </Style>
+      <Style Name="Selected">
+        <BrushLayer Name="Default" Sprite="StdAssets\collapsed" />
+      </Style>
+    </Styles>
+  </Brush>
+</Brushes>
