@@ -22,6 +22,7 @@ using TaleWorlds.GauntletUI.ExtraWidgets;
 using System.Windows.Controls;
 using TaleWorlds.Core;
 using TaleWorlds.CampaignSystem;
+using TaleWorlds.GauntletUI.ExtraWidgets.Graph;
 
 namespace InGameUIDesigner
 {
@@ -232,7 +233,10 @@ namespace InGameUIDesigner
         private void FilterPropertiesList()
         {
             if (_selectedWidget == null) return;
-            if (PropertySearchText.Length < 4) SelectedWidgetProperties = _selectedWidget.EditorGetProperties();
+            if (PropertySearchText.Length < 3)
+            {
+                SelectedWidgetProperties = _selectedWidget.EditorGetProperties(); 
+            }
             else
             {
                 SelectedWidgetProperties = new MBBindingList<WidgetPropertyVM>();
@@ -306,7 +310,7 @@ namespace InGameUIDesigner
                     var widgetPrefab = UIResourceManager.WidgetFactory.GetCustomType(widget.EditorGetPrefabName());
                     if (widgetPrefab.RootTemplate.Attributes[typeof(WidgetAttributeKeyTypeAttribute)].TryGetValue(propertyInfo.Name, out var attributeTemplate))
                     {
-                        var templateDefault = WidgetPropertyVM.CastStringToValue(attributeTemplate.Value, defaultValue.GetType(), widget);
+                        var templateDefault = WidgetPropertyVM.CastStringToValue(attributeTemplate.Value, defaultValue?.GetType(), widget);
                         if (templateDefault != null) defaultValue = templateDefault;
                     }
                 }
@@ -328,7 +332,7 @@ namespace InGameUIDesigner
                     {
                         if (_excludedBrushProperties.Contains(brushPropertyInfo.Name) || brushPropertyInfo.SetMethod == null || !brushPropertyInfo.SetMethod.IsPublic) continue;
                         var currentBrushValue = brushPropertyInfo.GetValue(brush);
-                        var defaultBrushValue = brushPropertyInfo.GetValue(brush.ClonedFrom);
+                        var defaultBrushValue = brushPropertyInfo.GetValue(brush.ClonedFrom ?? brush);
                         if (currentBrushValue == null || currentBrushValue.Equals(defaultBrushValue)) continue;
                         var brushAttribute = document.CreateAttribute("Brush." + brushPropertyInfo.Name);
                         brushAttribute.Value = currentBrushValue.ToString();
@@ -554,39 +558,41 @@ namespace InGameUIDesigner
             widget.AddComponent(gauntletView);
             widget.AddComponent(new WidgetEditorData(widget));
             gauntletView.RefreshBindingWithChildren();
-            if (widget is TextWidget text)
+            switch (widget)
             {
-                text.Text = "Text";
-            }
-            else if (widget is RichTextWidget richText)
-            {
-                richText.Text = "Text";
-            }
-            else if (widget is FillBar fillBar)
-            {
-                fillBar.Brush = UIResourceManager.BrushFactory.GetBrush("FillBarBrush");
-            }
-            else if (widget is CharacterTableauWidget charTableau)
-            {
-                charTableau.BodyProperties = "<BodyProperties version=\"4\" age=\"21.66\" weight=\"0.4938\" build=\"0.307\"  key=\"001BE40D8000261283CACD43ADCD7C3AB6495819F4BB5ADA30C177898038A892038000350863C503000000000000000000000000000000000000000073182046\"  />";
-                charTableau.IsFemale = false;
-                charTableau.EquipmentCode = "+0-broad_ild_sword_t3-@null+1-@null-@null+2-@null-@null+3-@null-@null+4-@null-@null+5-@null-@null+6-khuzait_civil_coat-@null+7-leather_shoes-@null+8-@null-@null+9-@null-@null+10-@null-@null+11-@null-@null";
-                charTableau.CharStringId = "Character";
-                charTableau.StanceIndex = 0;
-                charTableau.MountCreationKey = MountCreationKey.GetRandomMountKeyString(null, 0);
-                charTableau.ArmorColor1 = 4282552449;
-                charTableau.ArmorColor2 = 4293904784;
-                charTableau.Race = 0;
-            }
-            else if (widget is ItemTableauWidget itemTableau)
-            {
-                itemTableau.StringId = "cotton";
-                itemTableau.ItemModifierId = "";
-                itemTableau.BannerCode = "";
-            }
-            else if (widget is BannerTableauWidget bannerTableau)
-            {
-                bannerTableau.BannerCodeText = "34.25.10.1536.1536.764.764.1.0.0.314.22.35.444.444.764.764.0.0.270";
+                case TextWidget text:
+                    text.Text = "Text";
+                    break;
+                case RichTextWidget richText:
+                    richText.Text = "Text";
+                    break;
+                case FillBar fillBar:
+                    fillBar.Brush = UIResourceManager.BrushFactory.GetBrush("FillBarBrush");
+                    break;
+                case GraphWidget graph:
+                    graph.LineBrush = UIResourceManager.BrushFactory.GetBrush("Encyclopedia.CharacterTree.Line");
+                    graph.HorizontalValueLabelsBrush = UIResourceManager.BrushFactory.GetBrush("DefaultBrush");
+                    graph.VerticalValueLabelsBrush = UIResourceManager.BrushFactory.GetBrush("DefaultBrush");
+                    break;
+                case CharacterTableauWidget charTableau:
+                    charTableau.BodyProperties = "<BodyProperties version=\"4\" age=\"21.66\" weight=\"0.4938\" build=\"0.307\"  key=\"001BE40D8000261283CACD43ADCD7C3AB6495819F4BB5ADA30C177898038A892038000350863C503000000000000000000000000000000000000000073182046\"  />";
+                    charTableau.IsFemale = false;
+                    charTableau.EquipmentCode = "+0-broad_ild_sword_t3-@null+1-@null-@null+2-@null-@null+3-@null-@null+4-@null-@null+5-@null-@null+6-khuzait_civil_coat-@null+7-leather_shoes-@null+8-@null-@null+9-@null-@null+10-@null-@null+11-@null-@null";
+                    charTableau.CharStringId = "Character";
+                    charTableau.StanceIndex = 0;
+                    charTableau.MountCreationKey = MountCreationKey.GetRandomMountKeyString(null, 0);
+                    charTableau.ArmorColor1 = 4282552449;
+                    charTableau.ArmorColor2 = 4293904784;
+                    charTableau.Race = 0;
+                    break;
+                case ItemTableauWidget itemTableau:
+                    itemTableau.StringId = "cotton";
+                    itemTableau.ItemModifierId = "";
+                    itemTableau.BannerCode = "";
+                    break;
+                case BannerTableauWidget bannerTableau:
+                    bannerTableau.BannerCodeText = "34.25.10.1536.1536.764.764.1.0.0.314.22.35.444.444.764.764.0.0.270";
+                    break;
             }
             // Create place-holder widgets of the appropriate types to prevent any properties from being null.
             // This prevents crashes in widgets that are dependent on other widgets.

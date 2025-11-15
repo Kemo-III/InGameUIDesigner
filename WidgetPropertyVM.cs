@@ -310,6 +310,7 @@ namespace InGameUIDesigner
         }
         public static object CastStringToValue(string s, Type type, Widget widget)
         {
+            if (type is null) return null;
             if (type == typeof(int))
             {
                 if (int.TryParse(s, out var newVal)) return newVal;                
