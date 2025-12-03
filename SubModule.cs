@@ -12,7 +12,7 @@ namespace InGameUIDesigner
             base.OnSubModuleLoad();
             new Harmony("InGameUIDesigner").PatchAll();
             Module.CurrentModule.AddInitialStateOption(new InitialStateOption("OpenUIEditor",
-                new TextObject("Open UI Editor"), 5, OpenEditor, () => (false, TextObject.Empty)));
+                new TextObject("Open UI Editor"), 5, OpenEditor, () => (false, TextObject.GetEmpty())));
         }
 
         protected override void OnSubModuleUnloaded()

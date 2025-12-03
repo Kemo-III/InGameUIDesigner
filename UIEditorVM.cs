@@ -156,7 +156,7 @@ namespace InGameUIDesigner
             foreach (var name in factory.GetWidgetTypes())
             {
                 // Ignore any widget containing __ in its name, since it's most likely an auto-generated widget
-                if (name.Contains("__") || name == "DragCarrierWidget" || name == "TextureWidget" || name == "Container" || name == "EditorWigetScalerWidget") continue;
+                if (name.Contains("__") || name == "DragCarrierWidget" || name == "TextureWidget" || name == "Container" || name == "EditorWidgetScalerWidget") continue;
                 if (factory.IsBuiltinType(name)) _unfilteredBasicWidgetNames.Add(new WidgetResourceVM(name, this));
                 else if (factory.IsCustomType(name)) _unfilteredPrefabWidgetNames.Add(new WidgetResourceVM(name, this));
             }
@@ -169,31 +169,35 @@ namespace InGameUIDesigner
         private void AddExcludedProperties()
         {
             // These properties are excluded from being viewed in the selected widget properties
-            _excludedWidgetProperties = new List<string>();
-            _excludedWidgetProperties.Add("ParentWidget");
-            _excludedWidgetProperties.Add("DragWidget");
-            _excludedWidgetProperties.Add("Tag");
-            _excludedWidgetProperties.Add("PosOffset");
-            _excludedWidgetProperties.Add("LayoutImp");
-            _excludedWidgetProperties.Add("ScaledSuggestedWidth");
-            _excludedWidgetProperties.Add("ScaledSuggestedHeight");
-            _excludedWidgetProperties.Add("ScaledPositionXOffset");
-            _excludedWidgetProperties.Add("ScaledPositionYOffset");
-            _excludedWidgetProperties.Add("VisualDefinition");
+            _excludedWidgetProperties = new List<string>
+            {
+                "ParentWidget",
+                "DragWidget",
+                "Tag",
+                "PosOffset",
+                "LayoutImp",
+                "ScaledSuggestedWidth",
+                "ScaledSuggestedHeight",
+                "ScaledPositionXOffset",
+                "ScaledPositionYOffset",
+                "VisualDefinition"
+            };
 
-            _excludedBrushProperties = new List<string>();
-            _excludedBrushProperties.Add("Name");
-            _excludedBrushProperties.Add("DefaultStyle");
-            _excludedBrushProperties.Add("SoundProperties");
-            _excludedBrushProperties.Add("Layers");
-            _excludedBrushProperties.Add("DefaultStyleLayer");
-            _excludedBrushProperties.Add("DefaultLayer");
+            _excludedBrushProperties = new List<string>
+            {
+                "Name",
+                "DefaultStyle",
+                "SoundProperties",
+                "Layers",
+                "DefaultStyleLayer",
+                "DefaultLayer"
+            };
         }
 
         public void Initialize(Widget previewRoot, UIContext uiContext, WidgetFactory widgetFactory, GauntletMovie movie)
         {
             _previewRootWidget = previewRoot;
-            _selectedWidgetScaler = (EditorWigetScalerWidget) uiContext.Root.FindChild("ActiveWidgetScaler", true);
+            _selectedWidgetScaler = (EditorWidgetScalerWidget) uiContext.Root.FindChild("ActiveWidgetScaler", true);
             _context = uiContext;
             _widgetFactory = widgetFactory;
             _widgetFactory.PrefabExtensionContext.AddExtension(new PrefabWidgetExtensions());
@@ -512,7 +516,7 @@ namespace InGameUIDesigner
             {
                 DuplicateWidgetRecursive(child, widget, equivalentWidgets);
             }
-            foreach (var sourceChild in source.AllChildrenAndThis)
+            foreach (var sourceChild in source.GetAllChildrenAndThisRecursive())
             {
                 CopyWidgetProperties(equivalentWidgets[sourceChild], sourceChild, equivalentWidgets);
             }
@@ -673,7 +677,7 @@ namespace InGameUIDesigner
         {
             if (addUndoOp) AddUndoOp(new RemoveWidgetOperation(widget, widget.ParentWidget));
             widget.ParentWidget = null;
-            foreach (var child in widget.AllChildrenAndThis)
+            foreach (var child in widget.GetAllChildrenAndThisRecursive())
             {
                 child.EditorRemoveAllDependencies();
             }
@@ -691,7 +695,7 @@ namespace InGameUIDesigner
             var ClearEventHandlersWithChildren = AccessTools.Method(typeof(GauntletView), "ClearEventHandlersWithChildren");
             var view = widget.GetComponent<GauntletView>();
             if (view != null) ClearEventHandlersWithChildren.Invoke(view, new object[] { });
-            foreach (var child in widget.AllChildrenAndThis)
+            foreach (var child in widget.GetAllChildrenAndThisRecursive())
             {
                 child.EditorGetProperties()?.Clear();
                 child.EditorRemoveAllDependencies();
@@ -856,7 +860,7 @@ namespace InGameUIDesigner
         public void UpdateWidgetHierarchy()
         {
             WidgetHierarchy.Clear();
-            foreach (var child in _previewRootWidget.AllChildren)
+            foreach (var child in _previewRootWidget.GetAllChildrenRecursive())
             {
                 if (!child.EditorIsShownInHierarchy()) continue;
                 var wasCollapsed = (child.EditorGetWidgetHierarchyVM() == null) ? false : child.EditorGetWidgetHierarchyVM().IsCollapsed;
@@ -980,7 +984,7 @@ namespace InGameUIDesigner
             if (!_previewRootWidget.IsPointInsideMeasuredArea(mousePos)) return;
             _mouseDown = true;
             Widget clickedWidget = null;
-            foreach (var editWidget in _previewRootWidget.AllChildren)
+            foreach (var editWidget in _previewRootWidget.GetAllChildrenRecursive())
             {
                 if (editWidget.EditorIsLocked()) continue;
                 if (editWidget.IsVisible && editWidget.IsPointInsideMeasuredArea(mousePos))
@@ -1106,7 +1110,7 @@ namespace InGameUIDesigner
 
         public string GetWidgetPathFromWidget(Widget widget, Widget target, bool forExporting)
         {
-            if (widget.AllChildren.Contains(target)) return GetChildPathFromWidget(widget, target, forExporting);
+            if (widget.GetAllChildrenRecursive().Contains(target)) return GetChildPathFromWidget(widget, target, forExporting);
             else if (widget.ParentWidget != null) return "..\\" + GetWidgetPathFromWidget(widget.ParentWidget, target, forExporting);
             else return "";
         }
@@ -1162,7 +1166,7 @@ namespace InGameUIDesigner
         private bool _scalingLeft = false;
         private bool _scalingUp = false;
         private bool _scalingDown = false;
-        private EditorWigetScalerWidget _selectedWidgetScaler;
+        private EditorWidgetScalerWidget _selectedWidgetScaler;
 
         private MBBindingList<WidgetResourceVM> _availableBasicWidgetNames;
         private MBBindingList<WidgetResourceVM> _availablePrefabWidgetNames;

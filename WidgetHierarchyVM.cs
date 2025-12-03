@@ -109,11 +109,11 @@ namespace InGameUIDesigner
 
         public void LockWidget()
         {
-            //_owner.LockOrUnlockWiget(_widget);
+            //_owner.LockOrUnlockWidget(_widget);
             var shouldLock = !_widget.EditorIsLocked();
             _widget.EditorSetLocked(shouldLock);
             if (!Input.IsKeyDown(InputKey.LeftShift)) return;
-            foreach (var child in _widget.AllChildren)
+            foreach (var child in _widget.GetAllChildrenRecursive())
             {
                 if (!child.EditorIsShownInHierarchy()) continue;
                 child.EditorSetLocked(shouldLock);
@@ -125,7 +125,7 @@ namespace InGameUIDesigner
         public void ToggleCollapseChildren()
         {
             _childrenCollapsed = !_childrenCollapsed;
-            foreach (var child in _widget.AllChildren)
+            foreach (var child in _widget.GetAllChildrenRecursive())
             {
                 if (!child.EditorIsShownInHierarchy()) continue;
                 var vm = child.EditorGetWidgetHierarchyVM();

@@ -1,41 +1,8 @@
 ﻿extern alias MountAndBlade;
-using System;
-using System.Linq;
-using System.Reflection;
-using System.Xml;
 using TaleWorlds.Engine.GauntletUI;
-using TaleWorlds.GauntletUI;
 using TaleWorlds.GauntletUI.BaseTypes;
-using TaleWorlds.GauntletUI.PrefabSystem;
 using TaleWorlds.Library;
-using TaleWorlds.ScreenSystem;
-using EditorAttribute = TaleWorlds.GauntletUI.EditorAttribute;
-using MountAndBlade.System.Numerics;
-using System.Collections.Generic;
-using HarmonyLib;
-using TaleWorlds.GauntletUI.Layout;
-using TaleWorlds.CampaignSystem.SceneInformationPopupTypes;
-using TaleWorlds.GauntletUI.Data;
-using JetBrains.Annotations;
-using TaleWorlds.MountAndBlade;
-using TaleWorlds.InputSystem;
-using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
-using System.Net;
-using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
-using System.Runtime.InteropServices;
-using TaleWorlds.Engine;
-using System.Windows.Controls.Primitives;
-using System.CodeDom;
-using static TaleWorlds.Core.ItemCategory;
-using System.Net.NetworkInformation;
-using TaleWorlds.CampaignSystem.ViewModelCollection.Barter;
-using TaleWorlds.CampaignSystem.ViewModelCollection.CharacterDeveloper;
-using System.Windows.Forms;
-using HorizontalAlignment = TaleWorlds.GauntletUI.HorizontalAlignment;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-using System.Text;
-using System.Diagnostics;
 
 namespace InGameUIDesigner
 {
@@ -176,7 +143,7 @@ namespace InGameUIDesigner
             ShowPreviewSpritesList = false;
             _unfilteredSpriteList = new MBBindingList<SpriteItemVM>();
             PreviewSpriteList = new MBBindingList<SpriteItemVM>();
-            foreach (var sprite in UIResourceManager.SpriteData.SpriteNames.Values)
+            foreach (var sprite in UIResourceManager.SpriteData.Sprites.Values)
             {
                 _unfilteredSpriteList.Add(new SpriteItemVM(sprite));
             }

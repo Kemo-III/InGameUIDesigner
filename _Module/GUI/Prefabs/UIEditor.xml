@@ -98,7 +98,7 @@
 			</Widget>
 		</Children>
 	</ListPanel>
-	<EditorWigetScalerWidget Id="ActiveWidgetScaler" Sprite="frame_small_9"/>
+	<EditorWidgetScalerWidget Id="ActiveWidgetScaler" Sprite="frame_small_9"/>
 </Children>
 </Widget>
 </Window>

@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.GauntletUI;
+﻿using TaleWorlds.GauntletUI;
 using TaleWorlds.GauntletUI.BaseTypes;
 using TaleWorlds.Library;
 
 namespace InGameUIDesigner
 {
-    public class EditorWigetScalerWidget : Widget
+    public class EditorWidgetScalerWidget : Widget
     {
         private const float _WIDGET_SCALING_MINIMUM_MARGIN = 40f;
         public Widget SelectedWidget = null;
 
-        public EditorWigetScalerWidget(UIContext context) : base(context)
+        public EditorWidgetScalerWidget(UIContext context) : base(context)
         {
         }
 

@@ -24,7 +24,7 @@ namespace InGameUIDesigner
         protected override void AfterAttributesSet(WidgetCreationData widgetCreationData, WidgetInstantiationResult widgetInstantiationResult, Dictionary<string, WidgetAttributeTemplate> parameters)
         {
             // If the instantiated widget is not a child of the UIEditorVM.PreviewRootWidget then it is not an editable widget
-            if (!widgetInstantiationResult.Widget.Parents.Contains(UIEditorVM.PreviewRootWidget)) return;
+            if (!widgetInstantiationResult.Widget.GetAllParents().Contains(UIEditorVM.PreviewRootWidget)) return;
             // Terms I use: Intrinsic child vs extrinsic child
             // An intrinsic child is a child of the prefab's root widget in the xml file that defines the prefab.
             // i.e. it is a core component of the prefab that will always be present.
@@ -77,7 +77,7 @@ namespace InGameUIDesigner
 
         private Widget GetWidgetFromTemplate(WidgetTemplate template, WidgetInstantiationResult instantiationResults)
         {
-            foreach (var ancestor in  instantiationResults.Widget.Parents)
+            foreach (var ancestor in  instantiationResults.Widget.GetAllParents())
             {
                 // Widget Tag is set to the template's Tag, which is a GUID, when the widget is created
                 // Since the widget's Tag doesn't seem to be set elsewhere, it appears safe to use it to find the template that was

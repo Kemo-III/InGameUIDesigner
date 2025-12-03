@@ -1,26 +1,15 @@
-﻿using HarmonyLib;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using TaleWorlds.Core;
 using TaleWorlds.Core.ViewModelCollection.Selector;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.GauntletUI.BaseTypes;
-using TaleWorlds.GauntletUI.Data;
-using TaleWorlds.GauntletUI.PrefabSystem;
 using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade.GauntletUI.Widgets;
 using TaleWorlds.TwoDimension;
 using Color = TaleWorlds.Library.Color;
 using Brush = TaleWorlds.GauntletUI.Brush;
-using TaleWorlds.MountAndBlade;
-using System.Dynamic;
-using System.Runtime.InteropServices;
 using InGameUIDesigner.EditorOperations;
 
 namespace InGameUIDesigner

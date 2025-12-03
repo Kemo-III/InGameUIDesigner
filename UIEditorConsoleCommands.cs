@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TaleWorlds.CampaignSystem.CampaignBehaviors;
-using TaleWorlds.CampaignSystem;
+﻿using System.Collections.Generic;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using TaleWorlds.ScreenSystem;
-using TaleWorlds.MountAndBlade;
 
 namespace InGameUIDesigner
 {
